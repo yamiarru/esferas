@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Esferas | Ecommerce con turnos</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner container">
+      <div class="logo">Esferas Market</div>
+      <nav class="nav-links">
+        <button class="link" data-target="#ubicacion">Ubicación</button>
+        <button class="link" data-target="#turnos">Turnos</button>
+        <button class="link" id="loginButton">Iniciar sesión</button>
+      </nav>
+      <div class="user-badge" id="userBadge" aria-live="polite"></div>
+    </div>
+  </header>
+
+  <div class="brand-mark">
+    <div class="brand-ring">◎</div>
+    <div class="brand-word">esferas</div>
+    <p class="brand-tag">Ecommerce + agenda que orbitan en equilibrio</p>
+  </div>
+
+  <main class="container">
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow">Ecommerce con agenda inteligente</p>
+        <h1>Compra, agenda y organiza tus visitas en un solo lugar.</h1>
+        <p>Gestiona tus productos favoritos, reserva turnos y recibe confirmaciones al instante.</p>
+      </div>
+      <div class="carousel" aria-label="Destacados">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80');">
+            <div class="slide-caption">Nuevos sabores de temporada</div>
+          </div>
+          <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=80');">
+            <div class="slide-caption">Delivery y retiro en local</div>
+          </div>
+          <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=900&q=80');">
+            <div class="slide-caption">Combos especiales para compartir</div>
+          </div>
+        </div>
+        <button class="carousel-control prev" aria-label="Anterior" id="prevSlide">‹</button>
+        <button class="carousel-control next" aria-label="Siguiente" id="nextSlide">›</button>
+      </div>
+    </section>
+
+    <section class="pills-section" id="pills">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Catálogo vivo</p>
+          <h2>Pastillas con foto y descripción</h2>
+          <p>Agrega rápidamente fichas visuales para destacar productos o servicios.</p>
+        </div>
+        <form class="pill-form" id="pillForm">
+          <input type="url" id="pillImage" placeholder="URL de imagen" required>
+          <input type="text" id="pillTitle" placeholder="Título" required>
+          <input type="text" id="pillDescription" placeholder="Descripción" required>
+          <button type="submit">Agregar</button>
+        </form>
+      </div>
+      <div class="pill-grid" id="pillGrid"></div>
+    </section>
+
+    <section class="map-section" id="ubicacion">
+      <div class="map-copy">
+        <p class="eyebrow">Visítanos</p>
+        <h2>Estamos en Calle Wallaby</h2>
+        <p>Encuéntranos fácilmente y combina tu compra online con retiro en persona.</p>
+      </div>
+      <div class="map-frame" role="img" aria-label="Mapa de la ubicación Calle Wallaby">
+        <div class="map-placeholder">Mapa</div>
+        <p class="map-description">Calle Wallaby - Horario de atención: Lun a Dom de 9 a 21 hs.</p>
+      </div>
+    </section>
+
+    <section class="calendar-section" id="turnos">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Reservá tu turno</p>
+          <h2>Calendario interactivo</h2>
+          <p>Elige el día perfecto, completa tus datos y confirma el pago con MercadoPago o en persona.</p>
+        </div>
+      </div>
+      <div class="calendar-card">
+        <div class="calendar-header">
+          <button id="prevMonth" aria-label="Mes anterior">‹</button>
+          <div id="calendarTitle"></div>
+          <button id="nextMonth" aria-label="Mes siguiente">›</button>
+        </div>
+        <div class="calendar-grid" id="calendarGrid"></div>
+        <p class="calendar-note">Selecciona una fecha para abrir el formulario de reserva.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-left">
+      <strong>Calle Wallaby</strong>
+      <p>© 2026 Esferas Market</p>
+    </div>
+    <div class="footer-actions">
+      <a href="https://instagram.com" aria-label="Instagram">Instagram</a>
+      <a href="https://facebook.com" aria-label="Facebook">Facebook</a>
+      <a href="https://youtube.com" aria-label="YouTube">YouTube</a>
+      <a href="mailto:info@example.com" aria-label="Correo">Email</a>
+      <a href="https://wa.me/5491111111111" aria-label="WhatsApp">WhatsApp</a>
+    </div>
+  </footer>
+
+  <div class="modal" id="loginModal" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Iniciar sesión</h3>
+        <button class="close" data-close="loginModal">×</button>
+      </div>
+      <form id="loginForm" class="modal-body">
+        <label>Nombre <input type="text" name="name" required></label>
+        <label>Email <input type="email" name="email" required></label>
+        <button type="submit">Ingresar</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="bookingModal" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Completa tus datos</h3>
+        <button class="close" data-close="bookingModal">×</button>
+      </div>
+      <form id="bookingForm" class="modal-body">
+        <p id="selectedDateLabel"></p>
+        <label>Nombre <input type="text" name="name" required></label>
+        <label>Email <input type="email" name="email" required></label>
+        <label>Teléfono <input type="tel" name="phone"></label>
+        <label>Notas <textarea name="notes" rows="3" placeholder="Detalles de la visita"></textarea></label>
+        <button type="submit">Confirmar datos</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="paymentModal" aria-hidden="true">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Confirma tu reserva</h3>
+        <button class="close" data-close="paymentModal">×</button>
+      </div>
+      <div class="modal-body">
+        <p>Elige cómo completarás el pago.</p>
+        <div class="payment-options">
+          <button class="payment-btn" data-option="mercadopago">MercadoPago</button>
+          <button class="payment-btn" data-option="local">Iré al local en persona</button>
+        </div>
+        <p class="footnote">Opción en persona: tienes 30 días a partir de confirmar la fecha para concretar tu reserva.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
