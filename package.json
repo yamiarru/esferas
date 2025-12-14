@@ -1,0 +1,14 @@
+{
+  "name": "esferas",
+  "version": "1.0.0",
+  "description": "Ecommerce demo with booking calendar and session handling",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --check server.js"
+  },
+  "keywords": ["ecommerce", "booking", "calendar"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
