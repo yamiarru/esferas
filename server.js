@@ -7,7 +7,7 @@ const crypto = require('crypto');
 const PORT = process.env.PORT || 3000;
 const OWNER_EMAIL = process.env.OWNER_EMAIL || 'dueno@example.com';
 const BASE_DIR = __dirname;
-const STATIC_FILES = new Set(['index.html', 'style.css', 'app.js']);
+const PUBLIC_DIR = path.join(BASE_DIR, 'public');
 const EMAIL_LOG = path.join(BASE_DIR, 'email-log.txt');
 
 const sessionStore = new Map();
@@ -118,14 +118,15 @@ function readJson(req) {
 }
 
 function serveStatic(req, res, pathname) {
-  const safePath = pathname === '/' ? 'index.html' : pathname.replace(/^\//, '');
-  if (!STATIC_FILES.has(safePath)) {
-    res.writeHead(404);
-    res.end('Not found');
+  let filePath = path.join(PUBLIC_DIR, pathname);
+  if (pathname === '/') {
+    filePath = path.join(PUBLIC_DIR, 'index.html');
+  }
+  if (!filePath.startsWith(PUBLIC_DIR)) {
+    res.writeHead(403);
+    res.end('Forbidden');
     return;
   }
-
-  const filePath = path.join(BASE_DIR, safePath);
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
@@ -137,7 +138,10 @@ function serveStatic(req, res, pathname) {
     const contentType = {
       '.html': 'text/html; charset=utf-8',
       '.css': 'text/css; charset=utf-8',
-      '.js': 'application/javascript; charset=utf-8'
+      '.js': 'application/javascript; charset=utf-8',
+      '.png': 'image/png',
+      '.jpg': 'image/jpeg',
+      '.svg': 'image/svg+xml'
     }[ext] || 'application/octet-stream';
 
     res.writeHead(200, { 'Content-Type': contentType });
